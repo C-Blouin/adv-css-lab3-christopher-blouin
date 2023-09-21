@@ -1,0 +1,144 @@
+@charset "utf-8";
+
+/* 
+
+Advanced Interface Design with CSS - Lab 3
+
+Christopher Blouin
+
+*/
+
+body {
+  line-height: 1.4;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Targeting the parent container to apply the grid, so I have control onver the individual children items later. */
+.container {
+  display: grid;
+  /* The layout will occupy the entirety of the viewport height, the grid items will stretch slightly to fill in necessary space.  */
+  height: 100vh;
+  /* Set 5 equal columns along the grid track using the repeat function. */
+  grid-template-columns: repeat(5, 1fr);
+  /* Setting 5 rows with values equivalent to how much space I'd like each template area to occupy. */
+  grid-template-rows: 1fr auto 2fr 2fr 2fr 1fr;
+  /* Define the grid template of where I want each grid item to be placed along the specified column and row tracks. */
+  grid-template-areas:
+    'branding advertising1 advertising1 advertising1 search'
+    'branding global-nav global-nav global-nav global-nav'
+    'local-nav top-story top-story top-story advertising2'
+    'local-nav global-news national-news local-news advertising2'
+    'local-nav global-news national-news local-news market-info'
+    'footer footer footer footer footer';
+  /* Adding some whitespace between each grid item with gap. */
+  gap: 0.5rem;
+}
+
+/* Change the grid layout when the viewport reaches a max-width of 1024px within the viewport. This layout stacks all the grid items on top of one another. */
+@media screen and (max-width: 1024px) {
+  .container {
+    /* Assign 10 rows, reason being we have 10 rows in the template areas, so content will be placed accordingly in each row. */
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-areas:
+      'advertising1 advertising1 advertising1 advertising1 advertising1'
+      'branding branding branding branding branding'
+      'global-nav global-nav global-nav search search'
+      'local-nav local-nav local-nav local-nav local-nav'
+      'top-story top-story top-story top-story top-story'
+      'advertising2 advertising2 advertising2 advertising2 advertising2'
+      'global-news global-news global-news global-news global-news'
+      'national-news national-news national-news national-news national-news'
+      'local-news local-news local-news market-info market-info'
+      'footer footer footer footer footer';
+  }
+}
+
+/* Adding some padding (whitespace) inside each grid item */
+.item {
+  padding: 30px;
+  background-color: #212121;
+}
+
+/* 
+Each grid item contains a grid-area to assign it correctly to the grid-template-areas defined in the parent container.
+*/
+
+/* Branding */
+.item-a {
+  grid-area: branding;
+}
+
+/* Global Nav */
+.item-b {
+  grid-area: global-nav;
+}
+
+/* Local Nav */
+.item-c {
+  grid-area: local-nav;
+}
+
+/* Combinator selector on the navigation grid items for background color. */
+.item-b,
+.item-c {
+  background-color: #535353;
+}
+
+/* Footer */
+.item-d {
+  grid-area: footer;
+}
+
+/* Top Story */
+.item-e {
+  grid-area: top-story;
+  background-color: #689f38;
+}
+
+/* Global News */
+.item-f {
+  grid-area: global-news;
+}
+
+/* National News */
+.item-g {
+  grid-area: national-news;
+}
+
+/* Local News */
+.item-h {
+  grid-area: local-news;
+}
+
+/* Combinator selector on the three story grid items, applying a background to each of them in one CSS rule. */
+.item-f,
+.item-g,
+.item-h {
+  background-color: #8bc34a;
+}
+
+/* Search */
+.item-i {
+  grid-area: search;
+}
+
+/* Market Info */
+.item-j {
+  grid-area: market-info;
+}
+
+/* Advertising 1 */
+.item-k {
+  grid-area: advertising1;
+}
+
+/* Advertising 2 */
+.item-l {
+  grid-area: advertising2;
+}
+
+.item-k,
+.item-l {
+  background-color: #757575;
+}
